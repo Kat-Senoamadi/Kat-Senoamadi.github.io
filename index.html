@@ -141,6 +141,12 @@ button:hover{border-color:var(--accent)}
 pre.cmd{margin:0;overflow-x:auto;padding:.9rem 1rem;border-radius:6px;background:#0e171b;color:#d6e2e6;font:400 .82rem/1.6 var(--mono)}
 pre.cmd .p{color:#5cc3cf}
 .habits{margin:0;padding-left:1.1rem;display:grid;gap:.3rem}
+
+/* Home lab teaser */
+.teaser{display:grid;gap:1rem;padding:1.25rem;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);text-decoration:none}
+.teaser:hover{border-color:var(--accent)}
+.teaser-row{display:flex;flex-wrap:wrap;gap:1rem 1.75rem}
+.teaser-cta{font:600 .95rem/1 var(--mono);color:var(--accent)}
 </style>
 <style>*{box-sizing:border-box}body{margin:0}[hidden]{display:none!important}</style>
 </head>
@@ -193,107 +199,16 @@ pre.cmd .p{color:#5cc3cf}
 
   <section id="kasi-smiles">
     <header><span class="label">Featured project · Home lab</span><h2>Kasi Smiles Dental Clinic: IT from scratch</h2></header>
-    <div class="project">
-
-      <div class="scenario">
-        <span class="label">The scenario</span>
-        <p>A 10-person dental clinic in Gauteng is opening and has no IT. I'm setting up everything it needs, the way a real IT technician would, and documenting every step, problem and fix.</p>
-        <div class="specs"><span>Domain: kasismiles.local</span><span>Server: KS-DC01 · 192.168.10.10</span><span>Network: 192.168.10.0/24</span><span>Windows Server 2025 · VirtualBox</span></div>
+    <a class="teaser" href="homelab.html">
+      <p>I'm building the full IT setup for a pretend 10-person dental clinic: server, Active Directory, PCs, tickets, permissions, backups and security. Every step is documented with screenshots, problems and fixes.</p>
+      <div class="teaser-row">
+        <div class="stat"><b>2 of 9</b><span>sections done</span></div>
+        <div class="stat"><b>10</b><span>staff accounts</span></div>
+        <div class="stat"><b>4</b><span>real problems fixed</span></div>
       </div>
-
-      <div class="part">
-        <div class="part-head"><h3>Progress</h3><span class="chip info">2 of 9 sections done</span></div>
-        <ol class="roadmap">
-          <li class="done"><span>Server setup</span><span class="chip ok">Done</span></li>
-          <li class="done"><span>Active Directory: users &amp; groups</span><span class="chip ok">Done</span></li>
-          <li><span>Join the reception PC to the domain</span><span class="chip wip">Next</span></li>
-          <li><span>Helpdesk tickets: resets &amp; unlocks</span><span class="chip info">Planned</span></li>
-          <li><span>Permissions &amp; Group Policy</span><span class="chip info">Planned</span></li>
-          <li><span>PowerShell onboarding script</span><span class="chip info">Planned</span></li>
-          <li><span>Cloud identity: Entra ID &amp; MFA</span><span class="chip info">Planned</span></li>
-          <li><span>Clinic network: VLANs &amp; DHCP</span><span class="chip info">Planned</span></li>
-          <li><span>Backup &amp; security monitoring</span><span class="chip info">Planned</span></li>
-        </ol>
-      </div>
-
-      <div class="part">
-        <div class="part-head"><h3>1 · Server setup</h3><span class="chip ok">Done</span></div>
-        <div class="facts">
-          <div class="fact"><span class="label">Goal</span><p>Give the clinic one central server to manage logins, files and security, instead of setting up every PC separately.</p></div>
-          <div class="fact"><span class="label">What I did</span><ul>
-            <li>Created a private virtual network (192.168.10.0/24) with DHCP switched off, so I control every address</li>
-            <li>Built a VM (4GB RAM, 2 CPUs, 60GB) and installed Windows Server 2025</li>
-            <li>Renamed it KS-DC01 to a naming standard and set the South African time zone</li>
-            <li>Set a static IP and tested with <code>ipconfig</code> and <code>ping</code></li>
-          </ul></div>
-        </div>
-        <pre class="cmd"><span class="p">C:\&gt;</span> ping 8.8.8.8
-Reply from 8.8.8.8: bytes=32 time=12ms TTL=128
-Reply from 8.8.8.8: bytes=32 time=13ms TTL=128
-Packets: Sent = 4, Received = 4, Lost = 0 (0% loss)</pre>
-        <div class="shots">
-          <figure><img src="images/s1-vm-settings.png" alt="VirtualBox summary for KS-DC01: 4096 MB RAM, 2 CPUs, 60 GB disk, KS-ClinicNet network" loading="lazy" onerror="this.parentElement.hidden=true"><figcaption>The server's virtual hardware and network</figcaption></figure>
-          <figure><img src="images/s1-ipv4.png" alt="IPv4 settings: 192.168.10.10, gateway 192.168.10.1, DNS 127.0.0.1" loading="lazy" onerror="this.parentElement.hidden=true"><figcaption>Static IP and DNS settings</figcaption></figure>
-          <figure><img src="images/s1-ping-fail.png" alt="Ping failing with destination host unreachable" loading="lazy" onerror="this.parentElement.hidden=true"><figcaption>Problem: "Destination host unreachable"</figcaption></figure>
-          <figure><img src="images/s1-network-cause.png" alt="Virtual network prefix still set to 10.0.2.0/24" loading="lazy" onerror="this.parentElement.hidden=true"><figcaption>The cause: wrong network range</figcaption></figure>
-          <figure><img src="images/s1-ping-success.png" alt="Successful pings to the gateway and to 8.8.8.8" loading="lazy" onerror="this.parentElement.hidden=true"><figcaption>Fixed: 0% packet loss</figcaption></figure>
-        </div>
-      </div>
-
-      <div class="part">
-        <div class="part-head"><h3>2 · Active Directory</h3><span class="chip ok">Done</span></div>
-        <div class="facts">
-          <div class="fact"><span class="label">Goal</span><p>Give every staff member their own login, organised by department, so access is controlled from one place.</p></div>
-          <div class="fact"><span class="label">What I did</span><ul>
-            <li>Installed AD DS and promoted KS-DC01 to a domain controller for kasismiles.local</li>
-            <li>Pointed the server's DNS to itself so it acts as the clinic's "phonebook"</li>
-            <li>Built OUs for Dentists, Clinical, Reception and Admin, plus Groups and Computers</li>
-            <li>Created 4 security groups and 10 staff accounts (firstname.lastname), each forced to change their password at first login</li>
-            <li>Added job titles, departments and managers so the directory matches the real org chart</li>
-          </ul></div>
-          <div class="fact"><span class="label">Result</span><p>1 domain · 8 OUs · 4 security groups · 10 users</p></div>
-        </div>
-        <pre class="cmd"><span class="p">C:\&gt;</span> net group "GRP-Reception" /domain
-Members
--------------------------------------------------------
-ayanda.khumalo      thandi.mokoena      tumi.radebe
-The command completed successfully.</pre>
-        <div class="shots">
-          <figure><img src="images/s2-install-success.png" alt="Active Directory Domain Services installation succeeded on KS-DC01" loading="lazy" onerror="this.parentElement.hidden=true"><figcaption>AD DS role installed</figcaption></figure>
-          <figure><img src="images/s2-prereqs.png" alt="All prerequisite checks passed before promotion" loading="lazy" onerror="this.parentElement.hidden=true"><figcaption>Prerequisite checks passed</figcaption></figure>
-          <figure><img src="images/s2-domain-login.png" alt="Login screen showing KASISMILES\Administrator" loading="lazy" onerror="this.parentElement.hidden=true"><figcaption>Proof the domain exists</figcaption></figure>
-          <figure><img src="images/s2-ou-tree.png" alt="OU structure in Active Directory Users and Computers" loading="lazy" onerror="this.parentElement.hidden=true"><figcaption>The clinic's OU structure</figcaption></figure>
-          <figure><img src="images/s2-reception-ou.png" alt="Reception OU with three users" loading="lazy" onerror="this.parentElement.hidden=true"><figcaption>Reception staff in their OU</figcaption></figure>
-          <figure><img src="images/s2-group-members.png" alt="GRP-Reception members tab with three users" loading="lazy" onerror="this.parentElement.hidden=true"><figcaption>Reception group members</figcaption></figure>
-          <figure><img src="images/s2-net-user.png" alt="net user and net group command results" loading="lazy" onerror="this.parentElement.hidden=true"><figcaption>All 10 staff, verified by command</figcaption></figure>
-        </div>
-      </div>
-
-      <div class="part">
-        <h3>Problems I hit, and how I fixed them</h3>
-        <div class="fixes">
-          <div class="fix"><h4>Pings failed even though the IP settings were right</h4>
-            <p><b>Clue:</b> "Destination host unreachable", with replies coming from the server itself. <b>Cause:</b> the virtual network was still on its default range (10.0.2.0/24). <b>Fix:</b> shut the server down, corrected the range, re-tested: 0% loss. <b>Lesson:</b> check the device, then the network, and read the actual ping reply.</p></div>
-          <div class="fix"><h4>Locked out after promoting the domain controller</h4>
-            <p><b>Clue:</b> the domain existed but the password was rejected. <b>Checks:</b> ruled out Caps Lock and keyboard issues with the on-screen keyboard. <b>Fix:</b> no recovery path, so I rebuilt the server. <b>Lesson:</b> test credentials straight after setting them, and snapshot before big changes.</p></div>
-          <div class="fix"><h4>The server showed a 169.254 address</h4>
-            <p><b>Cause:</b> an APIPA address means the PC couldn't get an IP, so no static IP had been set. <b>Fix:</b> set it before installing AD, because a domain controller needs a fixed address.</p></div>
-          <div class="fix"><h4>A duplicate OU wouldn't delete</h4>
-            <p><b>Cause:</b> OUs are protected from accidental deletion by default. <b>Fix:</b> turned on Advanced Features, removed the protection, deleted only the duplicate.</p></div>
-        </div>
-      </div>
-
-      <div class="part">
-        <h3>Habits I now follow</h3>
-        <ul class="habits">
-          <li>Take a VM snapshot before every major change</li>
-          <li>Test a new password by signing out and back in, then record it</li>
-          <li>Check the computer name and IP before installing any server role</li>
-        </ul>
-      </div>
-
-
-    </div>
+      <span class="specs"><span>Windows Server 2025</span><span>Active Directory</span><span>DNS</span><span>VirtualBox</span></span>
+      <span class="teaser-cta">View the full home lab &rarr;</span>
+    </a>
   </section>
 
   <section>
@@ -301,7 +216,7 @@ The command completed successfully.</pre>
     <div class="log">
       <div class="entry">
         <h3>Kasi Smiles Clinic: small business IT environment</h3><span class="chip wip">2 of 9 done</span>
-        <p>Full IT for a simulated 10-person dental clinic. Server and Active Directory are live. <a href="#kasi-smiles">Read the write-up</a>.</p>
+        <p>Full IT for a simulated 10-person dental clinic. Server and Active Directory are live. <a href="homelab.html">Read the write-up</a>.</p>
         <span class="tools">Windows Server · Active Directory · VirtualBox · PowerShell</span>
       </div>
       <div class="entry">
