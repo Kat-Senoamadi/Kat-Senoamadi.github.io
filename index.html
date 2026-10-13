@@ -3,152 +3,112 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Katlego - entry-level IT Support Technician in Gauteng, South Africa.">
+<meta name="description" content="Katlego - aspiring IT Support Technician in Gauteng, South Africa.">
 <title>Katlego | IT Support Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
 <style>
-/* Layout: one calm reading column; the experience story is told as a real helpdesk ticket. */
+/* Layout: one dark reading column, amber "terminal" accent, mono labels like a console. */
 :root{
-  --bg:#f5f7f8; --surface:#ffffff; --ink:#14232b; --muted:#566872; --line:#d9e1e5;
-  --accent:#0f6b78; --accent-soft:#e1f0f2; --ok:#1e7a46; --ok-soft:#e3f3ea; --wip:#9a5b00; --wip-soft:#fbefdc;
+  --bg:#0c1220; --surface:#131b2c; --raise:#1a2438; --ink:#e6ebf3; --muted:#93a0b5; --line:#24304a;
+  --accent:#f2b43c; --accent-soft:#2c2614; --ok:#5fd4a0; --ok-soft:#12302a; --wip:#f2b43c; --wip-soft:#2c2614; --info:#8ab4ff; --info-soft:#18233d;
   --display:"Familjen Grotesk",system-ui,sans-serif;
   --body:"Public Sans",system-ui,sans-serif;
   --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+  color-scheme:dark;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0e171b; --surface:#152228; --ink:#e4ecef; --muted:#9aaeb6; --line:#26363d;
-  --accent:#5cc3cf; --accent-soft:#16343a; --ok:#6fd39a; --ok-soft:#173226; --wip:#f0b45a; --wip-soft:#36290f; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#0e171b; --surface:#152228; --ink:#e4ecef; --muted:#9aaeb6; --line:#26363d;
-  --accent:#5cc3cf; --accent-soft:#16343a; --ok:#6fd39a; --ok-soft:#173226; --wip:#f0b45a; --wip-soft:#36290f; color-scheme:dark}
-
-body{background:var(--bg);color:var(--ink);font:16px/1.65 var(--body);padding-inline:20px}
-.wrap{max-width:46rem;margin:0 auto;padding-block:3rem 4rem;display:grid;gap:3.25rem}
-h1,h2,h3{font-family:var(--display);line-height:1.15;text-wrap:balance;margin:0}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 var(--body);padding-inline:20px}
+.wrap{max-width:46rem;margin:0 auto;padding-block:3rem 4rem;display:grid;gap:3.5rem}
+h1,h2,h3,h4{font-family:var(--display);line-height:1.15;text-wrap:balance;margin:0}
 p{margin:0}
 a{color:var(--accent);text-underline-offset:3px}
 a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
-.label{font:500 .75rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-
-/* Hero */
-.hero{display:grid;gap:1.1rem}
-.hero h1{font-size:clamp(2.4rem,7vw,3.6rem);font-weight:700;letter-spacing:-.02em}
-.hero .role{font-family:var(--display);font-size:1.35rem;font-weight:500;color:var(--accent)}
-.hero .pitch{font-size:1.1rem;max-width:38rem}
-.meta{display:flex;flex-wrap:wrap;gap:.5rem 1.25rem;font:400 .85rem/1.4 var(--mono);color:var(--muted)}
-.links{display:flex;flex-wrap:wrap;gap:.6rem}
-.links a{font:500 .85rem/1 var(--mono);text-decoration:none;padding:.6rem .9rem;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink)}
-.links a:hover{border-color:var(--accent);color:var(--accent)}
+code{font-family:var(--mono);font-size:.9em;color:var(--accent)}
+.label{font:500 .75rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.label::before{content:"> ";color:var(--accent)}
 
 section{display:grid;gap:1.25rem}
-section > header{display:grid;gap:.4rem;border-top:1px solid var(--line);padding-top:1.25rem}
+section > header{display:grid;gap:.5rem}
 section h2{font-size:1.6rem;font-weight:600}
 
-/* Skills */
-.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:1rem}
-.skill{display:grid;gap:.35rem;align-content:start}
-.skill h3{font-size:1.05rem;font-weight:600}
-.skill p{color:var(--muted);font-size:.95rem}
-
-/* Status chips */
-.chip{font:500 .72rem/1 var(--mono);letter-spacing:.04em;padding:.35rem .55rem;border-radius:999px;white-space:nowrap}
+.chip{font:500 .72rem/1 var(--mono);letter-spacing:.04em;padding:.38rem .6rem;border-radius:999px;white-space:nowrap}
 .chip.ok{background:var(--ok-soft);color:var(--ok)}
 .chip.wip{background:var(--wip-soft);color:var(--wip)}
-.chip.info{background:var(--accent-soft);color:var(--accent)}
+.chip.info{background:var(--info-soft);color:var(--info)}
 
-/* Projects / lab log */
-.log{display:grid;gap:0;border:1px solid var(--line);border-radius:10px;background:var(--surface);overflow:hidden}
-.entry{display:grid;grid-template-columns:1fr auto;gap:.35rem 1rem;padding:1.1rem 1.25rem;border-top:1px solid var(--line)}
-.entry:first-child{border-top:0}
-.entry h3{font-size:1.05rem;font-weight:600;min-width:0}
-.entry p{grid-column:1/-1;color:var(--muted);font-size:.95rem}
-.entry .tools{grid-column:1/-1;font:400 .78rem/1.5 var(--mono);color:var(--muted)}
-
-/* Ticket */
-.ticket{border:1px solid var(--line);border-radius:10px;background:var(--surface);overflow:hidden}
-.ticket-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.6rem;padding:.85rem 1.25rem;border-bottom:1px dashed var(--line);font:500 .8rem/1.3 var(--mono)}
-.ticket-head .id{color:var(--muted)}
-.ticket-body{display:grid;gap:.9rem;padding:1.1rem 1.25rem 1.3rem}
-.ticket-row{display:grid;grid-template-columns:7.5rem 1fr;gap:1rem}
-.ticket-row .label{padding-top:.3rem}
-@media (max-width:520px){.ticket-row{grid-template-columns:1fr;gap:.3rem}}
-
-/* Jobs */
-.jobs{display:grid;gap:1.4rem}
-.job{display:grid;gap:.4rem}
-.job-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.25rem 1rem;align-items:baseline}
-.job h3{font-size:1.1rem;font-weight:600}
-.job .when{font:400 .82rem/1 var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
-.job ul{margin:0;padding-left:1.1rem;display:grid;gap:.25rem}
-.stats{display:flex;flex-wrap:wrap;gap:2rem;padding:1rem 0}
-.stat{display:grid;gap:.15rem}
-.stat b{font:700 1.8rem/1 var(--display)}
+.card{padding:1.25rem;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.stats{display:flex;flex-wrap:wrap;gap:1rem 2rem}
+.stat{display:grid;gap:.2rem}
+.stat b{font:700 1.8rem/1 var(--display);color:var(--ink);font-variant-numeric:tabular-nums}
 .stat span{font-size:.85rem;color:var(--muted)}
-
-/* Certs + degree tables */
-.tbl{overflow-x:auto}
-table{width:100%;border-collapse:collapse;font-size:.95rem}
-th{text-align:left;font:500 .72rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:.6rem .5rem;border-bottom:1px solid var(--line)}
-td{padding:.75rem .5rem;border-bottom:1px solid var(--line);vertical-align:top}
-td:last-child{color:var(--muted)}
-
-.about p + p{margin-top:.9rem}
-.about{display:grid;gap:0;font-size:1.02rem}
-
-footer{border-top:1px solid var(--line);padding-top:1.25rem;display:grid;gap:.6rem}
-.copyline{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
-.copyline code{font:500 .95rem var(--mono);user-select:all}
-button{font:500 .8rem var(--mono);padding:.45rem .8rem;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
-button:hover{border-color:var(--accent)}
-
-/* Building-now box */
-.building{display:grid;gap:.75rem;padding:1.1rem 1.25rem;border:1px dashed var(--line);border-radius:10px;background:var(--surface)}
-.building-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.5rem}
-.building h3{font-size:1.05rem;font-weight:600}
-.building p{color:var(--muted);font-size:.95rem}
 .pills{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.5rem}
-.pills li{font:500 .8rem/1 var(--mono);padding:.5rem .7rem;border-radius:6px;background:var(--wip-soft);color:var(--wip)}
-
-/* Featured project */
-.project{display:grid;gap:1.75rem}
-.scenario{display:grid;gap:.6rem;padding:1.1rem 1.25rem;border-radius:10px;background:var(--accent-soft)}
-.scenario p{font-size:1rem}
+.pills li{font:500 .8rem/1 var(--mono);padding:.5rem .7rem;border-radius:6px;background:var(--raise);color:var(--ink);border:1px solid var(--line)}
+.pills.wip li{background:var(--wip-soft);color:var(--wip);border-color:transparent}
 .specs{display:flex;flex-wrap:wrap;gap:.4rem 1.25rem;font:400 .82rem/1.5 var(--mono);color:var(--muted)}
-.roadmap{list-style:none;margin:0;padding:0;display:grid;gap:0;border:1px solid var(--line);border-radius:10px;background:var(--surface);overflow:hidden;counter-reset:step}
-.roadmap li{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.65rem 1.1rem;border-top:1px solid var(--line);counter-increment:step}
-.roadmap li:first-child{border-top:0}
-.roadmap li span:first-child{min-width:0}
-.roadmap li span:first-child::before{content:counter(step) ". ";font:500 .85rem var(--mono);color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:.5rem;justify-self:start;font:600 .9rem/1 var(--mono);padding:.75rem 1rem;border-radius:6px;background:var(--accent);color:#1a1405;text-decoration:none}
+.btn:hover{filter:brightness(1.08)}
+pre.cmd{margin:0;overflow-x:auto;padding:.9rem 1rem;border-radius:6px;background:#070b14;border:1px solid var(--line);color:#c9d4e3;font:400 .82rem/1.6 var(--mono)}
+pre.cmd .p{color:var(--accent)}
+footer{border-top:1px solid var(--line);padding-top:1.5rem;display:grid;gap:.75rem}
+@media (prefers-reduced-motion:no-preference){.btn,.card{transition:border-color .15s,filter .15s}}
+.hero{display:grid;gap:1rem}
+.hero h1{font-size:clamp(2.4rem,7vw,3.6rem);font-weight:700;letter-spacing:-.02em}
+.role{font:500 1.3rem/1.3 var(--display);color:var(--accent)}
+.pitch,.lead{font-size:1.1rem;max-width:36rem}
+.muted{color:var(--muted)}
+.small{font-size:.85rem}
+.links{display:flex;flex-wrap:wrap;gap:.6rem}
+.links a{font:500 .85rem/1 var(--mono);text-decoration:none;padding:.65rem .95rem;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink)}
+.links a:hover{border-color:var(--accent);color:var(--accent)}
+.teaser{display:grid;gap:1rem;color:var(--ink);text-decoration:none;border-color:var(--accent)}
+.teaser h3{font-size:1.25rem;font-weight:600}
+.teaser p{color:var(--muted)}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:1.25rem}
+.skill{display:grid;gap:.3rem;align-content:start;padding-left:.85rem;border-left:2px solid var(--line)}
+.skill h3{font-size:1.02rem;font-weight:600}
+.skill p{color:var(--muted);font-size:.92rem}
+.learning{display:grid;gap:.75rem}
+.jobs{display:grid;gap:1.2rem}
+.job,.edu{display:grid;gap:.3rem}
+.job p{color:var(--muted)}
+.job-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.25rem 1rem;align-items:baseline}
+.job h3,.edu h3{font-size:1.08rem;font-weight:600}
+.when{font:400 .82rem/1 var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.story{display:grid;gap:.85rem}
+.story-row{display:grid;grid-template-columns:5rem 1fr;gap:1rem}
+.story-row b{font:600 .85rem/1.65 var(--mono);color:var(--accent)}
+@media (max-width:520px){.story-row{grid-template-columns:1fr;gap:.1rem}}
+.certs{list-style:none;margin:0;padding:0;display:grid;border:1px solid var(--line);border-radius:10px;background:var(--surface);overflow:hidden}
+.certs li,.roadmap li{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.7rem 1.1rem;border-top:1px solid var(--line)}
+.certs li:first-child,.roadmap li:first-child{border-top:0}
+.copyline{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
+.copyline code{font:500 .95rem var(--mono);color:var(--ink);user-select:all}
+button{font:500 .8rem var(--mono);padding:.5rem .85rem;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+button:hover{border-color:var(--accent)}
+/* home lab */
+.topnav{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;font:500 .85rem/1 var(--mono)}
+.topnav a{text-decoration:none}
+.roadmap{list-style:none;margin:0;padding:0;display:grid;border:1px solid var(--line);border-radius:10px;background:var(--surface);overflow:hidden;counter-reset:s}
+.roadmap li{counter-increment:s}
+.roadmap li span:first-child::before{content:counter(s) ". ";font:500 .85rem var(--mono);color:var(--muted)}
 .roadmap li.done span:first-child{font-weight:600}
-.part{display:grid;gap:1rem}
-.part-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:.5rem}
-.part h3{font-size:1.3rem;font-weight:600}
-.facts{display:grid;gap:.9rem}
-.fact{display:grid;grid-template-columns:7.5rem 1fr;gap:1rem}
-.fact .label{padding-top:.3rem}
-.fact ul{margin:0;padding-left:1.1rem;display:grid;gap:.25rem}
-@media (max-width:520px){.fact{grid-template-columns:1fr;gap:.3rem}}
-.fixes{display:grid;gap:.75rem}
-.fix{display:grid;gap:.35rem;padding:.9rem 1.1rem;border:1px solid var(--line);border-left:3px solid var(--wip);border-radius:6px;background:var(--surface)}
-.fix h4{margin:0;font:600 1rem/1.3 var(--display)}
-.fix p{font-size:.95rem;color:var(--muted)}
-.fix p b{color:var(--ink);font-weight:600}
-.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1rem}
-.shots figure{margin:0;display:grid;gap:.4rem}
-.shots img{width:100%;border:1px solid var(--line);border-radius:6px;display:block}
-.shots figcaption{font-size:.85rem;color:var(--muted)}
-pre.cmd{margin:0;overflow-x:auto;padding:.9rem 1rem;border-radius:6px;background:#0e171b;color:#d6e2e6;font:400 .82rem/1.6 var(--mono)}
-pre.cmd .p{color:#5cc3cf}
-.habits{margin:0;padding-left:1.1rem;display:grid;gap:.3rem}
-
-/* Home lab teaser */
-.teaser{display:grid;gap:1rem;padding:1.25rem;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);text-decoration:none}
-.teaser:hover{border-color:var(--accent)}
-.teaser-row{display:flex;flex-wrap:wrap;gap:1rem 1.75rem}
-.teaser-cta{font:600 .95rem/1 var(--mono);color:var(--accent)}
+.evidence{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:1.25rem}
+.evidence figure{margin:0;display:grid;gap:.5rem;align-content:start;min-width:0}
+.evidence figure.wide{grid-column:1/-1}
+.evidence figcaption{font-size:.95rem}
+.evidence figcaption b{font-family:var(--mono);color:var(--accent);font-weight:600}
+.evidence a{display:block;border-radius:6px}
+.evidence img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:6px;background:#fff}
+.evidence a:hover img{border-color:var(--accent)}
+.problem{display:grid;gap:1rem;padding:1.25rem;border:1px solid var(--line);border-left:3px solid var(--wip);border-radius:10px;background:var(--surface)}
+.problem .chip{justify-self:start}
+.problem h3{font-size:1.15rem;font-weight:600}
+.fixlist{margin:0;padding-left:1.1rem;display:grid;gap:.45rem}
+.fixlist b{font-weight:600}
 </style>
-<style>*{box-sizing:border-box}body{margin:0}[hidden]{display:none!important}</style>
 </head>
 <body>
 <div class="wrap">
@@ -156,9 +116,13 @@ pre.cmd .p{color:#5cc3cf}
   <header class="hero">
     <span class="label">IT Support · Gauteng, South Africa</span>
     <h1>Katlego</h1>
-    <p class="role">IT Support Technician in the making</p>
-    <p class="pitch">I spent two years on busy call-centre floors solving problems for real people, 20 to 30 calls a day. Now I'm bringing that same patience to computers, networks and users. I fix things, I document what I did, and I know when to escalate.</p>
-    <div class="meta"><span>BIT student · Networking &amp; Cybersecurity</span><span>TryHackMe top 9% worldwide</span><span>Home lab: Windows Server + Active Directory</span><span>Open to learnerships &amp; entry-level roles</span></div>
+    <p class="role">Aspiring IT Support Technician</p>
+    <p class="pitch">Two years solving customer problems in busy call centres. Now I fix computers, networks and user accounts.</p>
+    <ul class="pills">
+      <li>BIT student · Networking &amp; Cybersecurity</li>
+      <li>TryHackMe top 9%</li>
+      <li>Open to learnerships</li>
+    </ul>
     <nav class="links" aria-label="Profiles">
       <a href="https://tryhackme.com/p/YOUR-TRYHACKME-USERNAME" target="_blank" rel="noopener">TryHackMe ↗</a>
       <a href="https://www.linkedin.com/in/YOUR-LINKEDIN-NAME" target="_blank" rel="noopener">LinkedIn ↗</a>
@@ -167,173 +131,84 @@ pre.cmd .p{color:#5cc3cf}
   </header>
 
   <section>
-    <header><span class="label">What I bring</span><h2>Skills a helpdesk needs</h2></header>
-    <div class="skills">
-      <div class="skill"><h3>Troubleshooting</h3><p>Hardware and software faults on Windows laptops. Step by step, ruling out causes one at a time.</p></div>
-      <div class="skill"><h3>Operating systems</h3><p>Windows installation and setup. Linux command line through LabEx and TryHackMe.</p></div>
-      <div class="skill"><h3>Networking</h3><p>Cisco Networking Basics. IP addressing, how devices talk, and where connections break.</p></div>
-      <div class="skill"><h3>Cloud</h3><p>Created and configured a virtual machine in Microsoft Azure.</p></div>
-      <div class="skill"><h3>Security awareness</h3><p>SIEM, EDR, log management and threat intel basics. I spot suspicious things before they spread.</p></div>
-      <div class="skill"><h3>People skills</h3><p>Two years of customer calls. Empathy, active listening, clear updates and first-call resolution.</p></div>
-      <div class="skill"><h3>Windows Server &amp; Active Directory</h3><p>Built a domain controller from scratch. Created OUs, security groups and 10 user accounts with job titles and managers.</p></div>
-      <div class="skill"><h3>IP addressing &amp; DNS</h3><p>Set static IPs, configured DNS for a domain, and diagnosed APIPA (169.254) addresses and failed pings.</p></div>
-      <div class="skill"><h3>Virtualisation</h3><p>Built and rebuilt servers in VirtualBox, with virtual networks and snapshots before every major change.</p></div>
-    </div>
-    <div class="building">
-      <div class="building-head"><h3>Building now in my home lab</h3><span class="chip wip">In progress</span></div>
-      <p>Next skills in my Kasi Smiles Clinic project. Each one moves up to my main skills once it's done and documented.</p>
-      <ul class="pills">
-        <li>Joining PCs to a domain</li>
-        <li>Password resets &amp; unlocks</li>
-        <li>Ticketing &amp; SLAs</li>
-        <li>Group Policy (GPO)</li>
-        <li>NTFS permissions</li>
-        <li>PowerShell automation</li>
-        <li>Microsoft Entra ID &amp; MFA</li>
-        <li>VLANs &amp; DHCP</li>
-        <li>Backup &amp; recovery</li>
-        <li>Event Viewer log analysis</li>
-      </ul>
-    </div>
+    <header><span class="label">About me</span><h2>Why IT support</h2></header>
+    <p class="lead">I'm the person who watches the "how to fix it" video and then actually tries it. I want to start at the helpdesk, learn every system I touch, and grow into IT security.</p>
   </section>
 
-  <section id="kasi-smiles">
-    <header><span class="label">Featured project · Home lab</span><h2>Kasi Smiles Dental Clinic: IT from scratch</h2></header>
-    <a class="teaser" href="homelab.html">
-      <p>I'm building the full IT setup for a pretend 10-person dental clinic: server, Active Directory, PCs, tickets, permissions, backups and security. Every step is documented with screenshots, problems and fixes.</p>
-      <div class="teaser-row">
-        <div class="stat"><b>2 of 9</b><span>sections done</span></div>
-        <div class="stat"><b>10</b><span>staff accounts</span></div>
-        <div class="stat"><b>4</b><span>real problems fixed</span></div>
+  <section>
+    <header><span class="label">Featured project</span><h2>My home lab</h2></header>
+    <a class="card teaser" href="homelab.html">
+      <h3>Kasi Smiles Dental Clinic: IT from scratch</h3>
+      <p>I'm setting up the full IT for a pretend 10-person clinic, with real screenshots of every step.</p>
+      <div class="stats">
+        <div class="stat"><b>2 / 9</b><span>sections done</span></div>
+        <div class="stat"><b>10</b><span>user accounts</span></div>
+        <div class="stat"><b>4</b><span>problems fixed</span></div>
       </div>
-      <span class="specs"><span>Windows Server 2025</span><span>Active Directory</span><span>DNS</span><span>VirtualBox</span></span>
-      <span class="teaser-cta">View the full home lab &rarr;</span>
+      <span class="btn">View the home lab →</span>
     </a>
   </section>
 
   <section>
-    <header><span class="label">Hands-on work</span><h2>What I've actually done</h2></header>
-    <div class="log">
-      <div class="entry">
-        <h3>Kasi Smiles Clinic: small business IT environment</h3><span class="chip wip">2 of 9 done</span>
-        <p>Full IT for a simulated 10-person dental clinic. Server and Active Directory are live. <a href="homelab.html">Read the write-up</a>.</p>
-        <span class="tools">Windows Server · Active Directory · VirtualBox · PowerShell</span>
-      </div>
-      <div class="entry">
-        <h3>This portfolio website</h3><span class="chip ok">Live</span>
-        <p>Hosted and maintained by me on GitHub Pages.</p>
-        <span class="tools">HTML · CSS · GitHub Pages</span>
-      </div>
-      <div class="entry">
-        <h3>Repaired a family member's laptop</h3><span class="chip ok">Fixed</span>
-        <p>Diagnosed the fault, applied the fix and handed it back working. My first real "user" and my first real ticket.</p>
-        <span class="tools">Windows · hardware &amp; software troubleshooting</span>
-      </div>
-      <div class="entry">
-        <h3>Clean Windows installation</h3><span class="chip ok">Done</span>
-        <p>Installed Windows from scratch, including setup, drivers and updates.</p>
-        <span class="tools">Windows · bootable USB · drivers</span>
-      </div>
-      <div class="entry">
-        <h3>Virtual machine in Microsoft Azure</h3><span class="chip ok">Done</span>
-        <p>Created a cloud VM in the Azure portal, choosing its size, operating system and network settings.</p>
-        <span class="tools">Azure portal · virtual machines</span>
-      </div>
-      <div class="entry">
-        <h3>TryHackMe: Cybersecurity 101 path</h3><span class="chip ok">Completed</span>
-        <p>Finished the full path and ranked in the top 9% of users worldwide.</p>
-        <span class="tools">Linux · networking · security tools</span>
-      </div>
-      <div class="entry">
-        <h3>Linux practice labs</h3><span class="chip info">Ongoing</span>
-        <p>Regular command-line labs on LabEx and TryHackMe: files, users, permissions and processes.</p>
-        <span class="tools">Linux CLI · LabEx</span>
-      </div>
+    <header><span class="label">Skills</span><h2>What I can do</h2></header>
+    <div class="skills">
+      <div class="skill"><h3>Troubleshooting</h3><p>Fixed a family laptop. Step-by-step diagnosis.</p></div>
+      <div class="skill"><h3>Windows &amp; Linux</h3><p>Windows installs, Linux command line.</p></div>
+      <div class="skill"><h3>Active Directory</h3><p>Users, groups and OUs on Windows Server.</p></div>
+      <div class="skill"><h3>Networking &amp; DNS</h3><p>Static IPs, ping tests, Cisco basics.</p></div>
+      <div class="skill"><h3>Virtualisation &amp; cloud</h3><p>VirtualBox servers, an Azure VM.</p></div>
+      <div class="skill"><h3>Customer support</h3><p>Empathy, clear updates, escalation.</p></div>
+    </div>
+    <div class="learning">
+      <span class="label">Learning now</span>
+      <ul class="pills wip">
+        <li>Group Policy</li><li>PowerShell</li><li>Ticketing</li><li>Entra ID &amp; MFA</li><li>Backups</li>
+      </ul>
     </div>
   </section>
 
   <section>
-    <header><span class="label">How I handle a problem</span><h2>A real case, written up as a ticket</h2></header>
-    <article class="ticket">
-      <div class="ticket-head"><span class="id">CASE · Customer service floor</span><span class="chip ok">Resolved · Escalated</span></div>
-      <div class="ticket-body">
-        <div class="ticket-row"><span class="label">Issue</span><p>A customer called for the third time. Two earlier agents had not solved their problem, and they were frustrated.</p></div>
-        <div class="ticket-row"><span class="label">What I did</span><p>I read the case history to see what had already been tried, so the customer didn't have to repeat themselves. Every standard fix had already been done. This needed a higher level.</p></div>
-        <div class="ticket-row"><span class="label">Escalation</span><p>I took it to my team leader and we escalated it for urgent attention, with the full history attached.</p></div>
-        <div class="ticket-row"><span class="label">Outcome</span><p>The customer thanked me for taking ownership and rated the call highly.</p></div>
-        <div class="ticket-row"><span class="label">Lesson</span><p>Check what's been done first. Know the limit of your level. Escalate early with good notes. This is exactly how a Level 1 helpdesk works.</p></div>
-      </div>
-    </article>
-  </section>
-
-  <section>
-    <header><span class="label">Experience</span><h2>Two years on the front line</h2></header>
+    <header><span class="label">Experience</span><h2>Two years in customer support</h2></header>
     <div class="stats">
-      <div class="stat"><b>20–30</b><span>customer calls a day</span></div>
-      <div class="stat"><b>5★</b><span>regular customer ratings</span></div>
-      <div class="stat"><b>2 years</b><span>in customer support</span></div>
+      <div class="stat"><b>20–30</b><span>calls a day</span></div>
+      <div class="stat"><b>5★</b><span>customer ratings</span></div>
     </div>
     <div class="jobs">
       <div class="job">
         <div class="job-top"><h3>Collection Agent · Nutun</h3><span class="when">Feb 2025 – Mar 2026</span></div>
-        <ul>
-          <li>Handled 20–30 calls a day while staying calm in tough conversations.</li>
-          <li>Logged every call accurately in company systems.</li>
-          <li>Met customer experience targets consistently.</li>
-        </ul>
+        <p>Handled tough calls calmly and logged every case accurately.</p>
       </div>
       <div class="job">
-        <div class="job-top"><h3>Customer Service Representative · CCI Global</h3><span class="when">Feb 2024 – Jan 2025</span></div>
-        <ul>
-          <li>Aimed for first-call resolution on every query.</li>
-          <li>Regularly rated 5 stars for empathy and listening.</li>
-          <li>Escalated complex cases to team leaders with full notes.</li>
-        </ul>
+        <div class="job-top"><h3>Customer Service Rep · CCI Global</h3><span class="when">Feb 2024 – Jan 2025</span></div>
+        <p>Aimed for first-call resolution and escalated complex cases with full notes.</p>
       </div>
     </div>
-  </section>
-
-  <section>
-    <header><span class="label">Education</span><h2>Bachelor of IT, and why it matters here</h2></header>
-    <p>First year at AIE, majoring in Networking and Cybersecurity. Here is how my modules link to IT support work.</p>
-    <div class="tbl"><table>
-      <thead><tr><th>Module</th><th>Used on the job for</th></tr></thead>
-      <tbody>
-        <tr><td>Computer hardware</td><td>Diagnosing and replacing PC parts</td></tr>
-        <tr><td>Computer networking</td><td>Fixing connection and Wi-Fi problems</td></tr>
-        <tr><td>Cloud computing (Azure)</td><td>Supporting cloud accounts and VMs</td></tr>
-        <tr><td>Programming (Java)</td><td>Logical thinking, reading error messages</td></tr>
-        <tr><td>Business communication</td><td>Clear tickets, emails and user updates</td></tr>
-        <tr><td>Excel &amp; Access</td><td>Tracking assets, reports and data</td></tr>
-      </tbody>
-    </table></div>
-  </section>
-
-  <section>
-    <header><span class="label">Certifications</span><h2>Done, and what's next</h2></header>
-    <div class="tbl"><table>
-      <thead><tr><th>Certification</th><th>Status</th></tr></thead>
-      <tbody>
-        <tr><td>Cisco Networking Basics</td><td><span class="chip ok">Completed</span></td></tr>
-        <tr><td>CompTIA A+</td><td><span class="chip wip">Studying · exam next</span></td></tr>
-        <tr><td>CompTIA Network+</td><td><span class="chip wip">Studying · exam after A+</span></td></tr>
-        <tr><td>Microsoft SC-900</td><td><span class="chip info">Studying</span></td></tr>
-      </tbody>
-    </table></div>
-  </section>
-
-  <section class="about">
-    <header><span class="label">About me</span><h2>Why IT support</h2></header>
-    <div>
-      <p>I'm the person who watches the "how to fix it" video and then actually tries it. Most evenings I'm on TryHackMe, LabEx, or YouTube learning how hardware and software problems get solved.</p>
-      <p>Call centres taught me that behind every problem is a person who just wants their day back. IT support is the same job with better tools. I want to start at the helpdesk, learn every system I touch, and grow toward IT security.</p>
+    <div class="card story">
+      <span class="label">How I handle a problem</span>
+      <div class="story-row"><b>Issue</b><p>A customer called a third time with the problem still unsolved.</p></div>
+      <div class="story-row"><b>Action</b><p>I read the history, saw every fix was tried, and escalated it with my team leader.</p></div>
+      <div class="story-row"><b>Result</b><p>It got urgent attention, and the customer rated me highly.</p></div>
     </div>
+  </section>
+
+  <section>
+    <header><span class="label">Education &amp; certifications</span><h2>Learning</h2></header>
+    <div class="edu">
+      <div class="job-top"><h3>Bachelor of IT · AIE</h3><span class="when">1st year</span></div>
+      <p class="muted">Networking &amp; Cybersecurity major. Modules include hardware, networking, Azure and Java.</p>
+    </div>
+    <ul class="certs">
+      <li><span>Cisco Networking Basics</span><span class="chip ok">Completed</span></li>
+      <li><span>CompTIA A+</span><span class="chip wip">Studying</span></li>
+      <li><span>CompTIA Network+</span><span class="chip wip">Studying</span></li>
+      <li><span>Microsoft SC-900</span><span class="chip info">Studying</span></li>
+    </ul>
   </section>
 
   <footer>
     <span class="label">Contact</span>
     <div class="copyline"><code id="email">nolosenoamadi@gmail.com</code><button id="copy" type="button">Copy email</button></div>
-    <p class="label">Gauteng · Available immediately</p>
+    <p class="muted small">Gauteng · Available immediately</p>
   </footer>
 </div>
 
