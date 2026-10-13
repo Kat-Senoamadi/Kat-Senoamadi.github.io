@@ -6,272 +6,190 @@
 <meta name="description" content="Kasi Smiles Dental Clinic: a home-lab IT environment built and documented by Katlego.">
 <title>Kasi Smiles Home Lab | Katlego</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap">
 <style>
-/* Layout: one calm reading column; the experience story is told as a real helpdesk ticket. */
+/* Layout: one dark reading column, amber "terminal" accent, mono labels like a console. */
 :root{
-  --bg:#f5f7f8; --surface:#ffffff; --ink:#14232b; --muted:#566872; --line:#d9e1e5;
-  --accent:#0f6b78; --accent-soft:#e1f0f2; --ok:#1e7a46; --ok-soft:#e3f3ea; --wip:#9a5b00; --wip-soft:#fbefdc;
+  --bg:#0c1220; --surface:#131b2c; --raise:#1a2438; --ink:#e6ebf3; --muted:#93a0b5; --line:#24304a;
+  --accent:#f2b43c; --accent-soft:#2c2614; --ok:#5fd4a0; --ok-soft:#12302a; --wip:#f2b43c; --wip-soft:#2c2614; --info:#8ab4ff; --info-soft:#18233d;
   --display:"Familjen Grotesk",system-ui,sans-serif;
   --body:"Public Sans",system-ui,sans-serif;
   --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+  color-scheme:dark;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0e171b; --surface:#152228; --ink:#e4ecef; --muted:#9aaeb6; --line:#26363d;
-  --accent:#5cc3cf; --accent-soft:#16343a; --ok:#6fd39a; --ok-soft:#173226; --wip:#f0b45a; --wip-soft:#36290f; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#0e171b; --surface:#152228; --ink:#e4ecef; --muted:#9aaeb6; --line:#26363d;
-  --accent:#5cc3cf; --accent-soft:#16343a; --ok:#6fd39a; --ok-soft:#173226; --wip:#f0b45a; --wip-soft:#36290f; color-scheme:dark}
-
-body{background:var(--bg);color:var(--ink);font:16px/1.65 var(--body);padding-inline:20px}
-.wrap{max-width:46rem;margin:0 auto;padding-block:3rem 4rem;display:grid;gap:3.25rem}
-h1,h2,h3{font-family:var(--display);line-height:1.15;text-wrap:balance;margin:0}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 var(--body);padding-inline:20px}
+.wrap{max-width:46rem;margin:0 auto;padding-block:3rem 4rem;display:grid;gap:3.5rem}
+h1,h2,h3,h4{font-family:var(--display);line-height:1.15;text-wrap:balance;margin:0}
 p{margin:0}
 a{color:var(--accent);text-underline-offset:3px}
 a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
-.label{font:500 .75rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-
-/* Hero */
-.hero{display:grid;gap:1.1rem}
-.hero h1{font-size:clamp(2.4rem,7vw,3.6rem);font-weight:700;letter-spacing:-.02em}
-.hero .role{font-family:var(--display);font-size:1.35rem;font-weight:500;color:var(--accent)}
-.hero .pitch{font-size:1.1rem;max-width:38rem}
-.meta{display:flex;flex-wrap:wrap;gap:.5rem 1.25rem;font:400 .85rem/1.4 var(--mono);color:var(--muted)}
-.links{display:flex;flex-wrap:wrap;gap:.6rem}
-.links a{font:500 .85rem/1 var(--mono);text-decoration:none;padding:.6rem .9rem;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink)}
-.links a:hover{border-color:var(--accent);color:var(--accent)}
+code{font-family:var(--mono);font-size:.9em;color:var(--accent)}
+.label{font:500 .75rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.label::before{content:"> ";color:var(--accent)}
 
 section{display:grid;gap:1.25rem}
-section > header{display:grid;gap:.4rem;border-top:1px solid var(--line);padding-top:1.25rem}
+section > header{display:grid;gap:.5rem}
 section h2{font-size:1.6rem;font-weight:600}
 
-/* Skills */
-.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:1rem}
-.skill{display:grid;gap:.35rem;align-content:start}
-.skill h3{font-size:1.05rem;font-weight:600}
-.skill p{color:var(--muted);font-size:.95rem}
-
-/* Status chips */
-.chip{font:500 .72rem/1 var(--mono);letter-spacing:.04em;padding:.35rem .55rem;border-radius:999px;white-space:nowrap}
+.chip{font:500 .72rem/1 var(--mono);letter-spacing:.04em;padding:.38rem .6rem;border-radius:999px;white-space:nowrap}
 .chip.ok{background:var(--ok-soft);color:var(--ok)}
 .chip.wip{background:var(--wip-soft);color:var(--wip)}
-.chip.info{background:var(--accent-soft);color:var(--accent)}
+.chip.info{background:var(--info-soft);color:var(--info)}
 
-/* Projects / lab log */
-.log{display:grid;gap:0;border:1px solid var(--line);border-radius:10px;background:var(--surface);overflow:hidden}
-.entry{display:grid;grid-template-columns:1fr auto;gap:.35rem 1rem;padding:1.1rem 1.25rem;border-top:1px solid var(--line)}
-.entry:first-child{border-top:0}
-.entry h3{font-size:1.05rem;font-weight:600;min-width:0}
-.entry p{grid-column:1/-1;color:var(--muted);font-size:.95rem}
-.entry .tools{grid-column:1/-1;font:400 .78rem/1.5 var(--mono);color:var(--muted)}
-
-/* Ticket */
-.ticket{border:1px solid var(--line);border-radius:10px;background:var(--surface);overflow:hidden}
-.ticket-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.6rem;padding:.85rem 1.25rem;border-bottom:1px dashed var(--line);font:500 .8rem/1.3 var(--mono)}
-.ticket-head .id{color:var(--muted)}
-.ticket-body{display:grid;gap:.9rem;padding:1.1rem 1.25rem 1.3rem}
-.ticket-row{display:grid;grid-template-columns:7.5rem 1fr;gap:1rem}
-.ticket-row .label{padding-top:.3rem}
-@media (max-width:520px){.ticket-row{grid-template-columns:1fr;gap:.3rem}}
-
-/* Jobs */
-.jobs{display:grid;gap:1.4rem}
-.job{display:grid;gap:.4rem}
-.job-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.25rem 1rem;align-items:baseline}
-.job h3{font-size:1.1rem;font-weight:600}
-.job .when{font:400 .82rem/1 var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
-.job ul{margin:0;padding-left:1.1rem;display:grid;gap:.25rem}
-.stats{display:flex;flex-wrap:wrap;gap:2rem;padding:1rem 0}
-.stat{display:grid;gap:.15rem}
-.stat b{font:700 1.8rem/1 var(--display)}
+.card{padding:1.25rem;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.stats{display:flex;flex-wrap:wrap;gap:1rem 2rem}
+.stat{display:grid;gap:.2rem}
+.stat b{font:700 1.8rem/1 var(--display);color:var(--ink);font-variant-numeric:tabular-nums}
 .stat span{font-size:.85rem;color:var(--muted)}
-
-/* Certs + degree tables */
-.tbl{overflow-x:auto}
-table{width:100%;border-collapse:collapse;font-size:.95rem}
-th{text-align:left;font:500 .72rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:.6rem .5rem;border-bottom:1px solid var(--line)}
-td{padding:.75rem .5rem;border-bottom:1px solid var(--line);vertical-align:top}
-td:last-child{color:var(--muted)}
-
-.about p + p{margin-top:.9rem}
-.about{display:grid;gap:0;font-size:1.02rem}
-
-footer{border-top:1px solid var(--line);padding-top:1.25rem;display:grid;gap:.6rem}
-.copyline{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
-.copyline code{font:500 .95rem var(--mono);user-select:all}
-button{font:500 .8rem var(--mono);padding:.45rem .8rem;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
-button:hover{border-color:var(--accent)}
-
-/* Building-now box */
-.building{display:grid;gap:.75rem;padding:1.1rem 1.25rem;border:1px dashed var(--line);border-radius:10px;background:var(--surface)}
-.building-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.5rem}
-.building h3{font-size:1.05rem;font-weight:600}
-.building p{color:var(--muted);font-size:.95rem}
 .pills{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.5rem}
-.pills li{font:500 .8rem/1 var(--mono);padding:.5rem .7rem;border-radius:6px;background:var(--wip-soft);color:var(--wip)}
-
-/* Featured project */
-.project{display:grid;gap:1.75rem}
-.scenario{display:grid;gap:.6rem;padding:1.1rem 1.25rem;border-radius:10px;background:var(--accent-soft)}
-.scenario p{font-size:1rem}
+.pills li{font:500 .8rem/1 var(--mono);padding:.5rem .7rem;border-radius:6px;background:var(--raise);color:var(--ink);border:1px solid var(--line)}
+.pills.wip li{background:var(--wip-soft);color:var(--wip);border-color:transparent}
 .specs{display:flex;flex-wrap:wrap;gap:.4rem 1.25rem;font:400 .82rem/1.5 var(--mono);color:var(--muted)}
-.roadmap{list-style:none;margin:0;padding:0;display:grid;gap:0;border:1px solid var(--line);border-radius:10px;background:var(--surface);overflow:hidden;counter-reset:step}
-.roadmap li{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.65rem 1.1rem;border-top:1px solid var(--line);counter-increment:step}
-.roadmap li:first-child{border-top:0}
-.roadmap li span:first-child{min-width:0}
-.roadmap li span:first-child::before{content:counter(step) ". ";font:500 .85rem var(--mono);color:var(--muted)}
-.roadmap li.done span:first-child{font-weight:600}
-.part{display:grid;gap:1rem}
-.part-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:.5rem}
-.part h3{font-size:1.3rem;font-weight:600}
-.facts{display:grid;gap:.9rem}
-.fact{display:grid;grid-template-columns:7.5rem 1fr;gap:1rem}
-.fact .label{padding-top:.3rem}
-.fact ul{margin:0;padding-left:1.1rem;display:grid;gap:.25rem}
-@media (max-width:520px){.fact{grid-template-columns:1fr;gap:.3rem}}
-.fixes{display:grid;gap:.75rem}
-.fix{display:grid;gap:.35rem;padding:.9rem 1.1rem;border:1px solid var(--line);border-left:3px solid var(--wip);border-radius:6px;background:var(--surface)}
-.fix h4{margin:0;font:600 1rem/1.3 var(--display)}
-.fix p{font-size:.95rem;color:var(--muted)}
-.fix p b{color:var(--ink);font-weight:600}
-.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1rem}
-.shots figure{margin:0;display:grid;gap:.4rem}
-.shots img{width:100%;border:1px solid var(--line);border-radius:6px;display:block}
-.shots figcaption{font-size:.85rem;color:var(--muted)}
-pre.cmd{margin:0;overflow-x:auto;padding:.9rem 1rem;border-radius:6px;background:#0e171b;color:#d6e2e6;font:400 .82rem/1.6 var(--mono)}
-pre.cmd .p{color:#5cc3cf}
-.habits{margin:0;padding-left:1.1rem;display:grid;gap:.3rem}
-</style>
-<style>*{box-sizing:border-box}body{margin:0}[hidden]{display:none!important}</style>
-<style>
+.btn{display:inline-flex;align-items:center;gap:.5rem;justify-self:start;font:600 .9rem/1 var(--mono);padding:.75rem 1rem;border-radius:6px;background:var(--accent);color:#1a1405;text-decoration:none}
+.btn:hover{filter:brightness(1.08)}
+pre.cmd{margin:0;overflow-x:auto;padding:.9rem 1rem;border-radius:6px;background:#070b14;border:1px solid var(--line);color:#c9d4e3;font:400 .82rem/1.6 var(--mono)}
+pre.cmd .p{color:var(--accent)}
+footer{border-top:1px solid var(--line);padding-top:1.5rem;display:grid;gap:.75rem}
+@media (prefers-reduced-motion:no-preference){.btn,.card{transition:border-color .15s,filter .15s}}
+.hero{display:grid;gap:1rem}
+.hero h1{font-size:clamp(2.4rem,7vw,3.6rem);font-weight:700;letter-spacing:-.02em}
+.role{font:500 1.3rem/1.3 var(--display);color:var(--accent)}
+.pitch,.lead{font-size:1.1rem;max-width:36rem}
+.muted{color:var(--muted)}
+.small{font-size:.85rem}
+.links{display:flex;flex-wrap:wrap;gap:.6rem}
+.links a{font:500 .85rem/1 var(--mono);text-decoration:none;padding:.65rem .95rem;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink)}
+.links a:hover{border-color:var(--accent);color:var(--accent)}
+.teaser{display:grid;gap:1rem;color:var(--ink);text-decoration:none;border-color:var(--accent)}
+.teaser h3{font-size:1.25rem;font-weight:600}
+.teaser p{color:var(--muted)}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:1.25rem}
+.skill{display:grid;gap:.3rem;align-content:start;padding-left:.85rem;border-left:2px solid var(--line)}
+.skill h3{font-size:1.02rem;font-weight:600}
+.skill p{color:var(--muted);font-size:.92rem}
+.learning{display:grid;gap:.75rem}
+.jobs{display:grid;gap:1.2rem}
+.job,.edu{display:grid;gap:.3rem}
+.job p{color:var(--muted)}
+.job-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.25rem 1rem;align-items:baseline}
+.job h3,.edu h3{font-size:1.08rem;font-weight:600}
+.when{font:400 .82rem/1 var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.story{display:grid;gap:.85rem}
+.story-row{display:grid;grid-template-columns:5rem 1fr;gap:1rem}
+.story-row b{font:600 .85rem/1.65 var(--mono);color:var(--accent)}
+@media (max-width:520px){.story-row{grid-template-columns:1fr;gap:.1rem}}
+.certs{list-style:none;margin:0;padding:0;display:grid;border:1px solid var(--line);border-radius:10px;background:var(--surface);overflow:hidden}
+.certs li,.roadmap li{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.7rem 1.1rem;border-top:1px solid var(--line)}
+.certs li:first-child,.roadmap li:first-child{border-top:0}
+.copyline{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
+.copyline code{font:500 .95rem var(--mono);color:var(--ink);user-select:all}
+button{font:500 .8rem var(--mono);padding:.5rem .85rem;border-radius:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+button:hover{border-color:var(--accent)}
+/* home lab */
 .topnav{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;font:500 .85rem/1 var(--mono)}
 .topnav a{text-decoration:none}
-.lab-hero{display:grid;gap:.9rem}
-.lab-hero h1{font-size:clamp(2rem,6vw,3rem);font-weight:700;letter-spacing:-.02em}
-.lab-hero p{font-size:1.05rem;max-width:38rem}
-.shots a{display:block;border-radius:6px}
-.shots a:hover img{border-color:var(--accent)}
-.backlink{font:500 .9rem var(--mono)}
+.roadmap{list-style:none;margin:0;padding:0;display:grid;border:1px solid var(--line);border-radius:10px;background:var(--surface);overflow:hidden;counter-reset:s}
+.roadmap li{counter-increment:s}
+.roadmap li span:first-child::before{content:counter(s) ". ";font:500 .85rem var(--mono);color:var(--muted)}
+.roadmap li.done span:first-child{font-weight:600}
+.evidence{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:1.25rem}
+.evidence figure{margin:0;display:grid;gap:.5rem;align-content:start;min-width:0}
+.evidence figure.wide{grid-column:1/-1}
+.evidence figcaption{font-size:.95rem}
+.evidence figcaption b{font-family:var(--mono);color:var(--accent);font-weight:600}
+.evidence a{display:block;border-radius:6px}
+.evidence img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:6px;background:#fff}
+.evidence a:hover img{border-color:var(--accent)}
+.problem{display:grid;gap:1rem;padding:1.25rem;border:1px solid var(--line);border-left:3px solid var(--wip);border-radius:10px;background:var(--surface)}
+.problem .chip{justify-self:start}
+.problem h3{font-size:1.15rem;font-weight:600}
+.fixlist{margin:0;padding-left:1.1rem;display:grid;gap:.45rem}
+.fixlist b{font-weight:600}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <nav class="topnav" aria-label="Site"><a href="index.html">&larr; Back to portfolio</a><span class="label">Katlego · IT Support</span></nav>
+  <nav class="topnav" aria-label="Site"><a href="index.html">← Back to portfolio</a><span class="label">Home lab</span></nav>
 
-  <header class="lab-hero">
-    <span class="label">Home lab project · Updated as I build</span>
-    <h1>Kasi Smiles Dental Clinic: IT from scratch</h1>
-    <p>I'm building the complete IT setup for a pretend 10-person dental clinic in my home lab, and documenting every step, problem and fix the way a real IT technician would.</p>
+  <header class="hero">
+    <span class="label">Home lab project</span>
+    <h1>Kasi Smiles Dental Clinic</h1>
+    <p class="pitch">I'm setting up all the IT for a pretend 10-person clinic. Every screenshot below is from my own lab.</p>
+    <div class="specs"><span>Windows Server 2025</span><span>kasismiles.local</span><span>192.168.10.0/24</span><span>VirtualBox</span></div>
   </header>
 
   <section>
-    <div class="project">
+    <header><span class="label">Progress</span><h2>2 of 9 sections done</h2></header>
+    <ol class="roadmap">
+      <li class="done"><span>Server setup</span><span class="chip ok">Done</span></li>
+      <li class="done"><span>Active Directory</span><span class="chip ok">Done</span></li>
+      <li><span>Join a PC to the domain</span><span class="chip wip">Next</span></li>
+      <li><span>Helpdesk tickets</span><span class="chip info">Planned</span></li>
+      <li><span>Permissions &amp; Group Policy</span><span class="chip info">Planned</span></li>
+      <li><span>PowerShell script</span><span class="chip info">Planned</span></li>
+      <li><span>Entra ID &amp; MFA</span><span class="chip info">Planned</span></li>
+      <li><span>Clinic network</span><span class="chip info">Planned</span></li>
+      <li><span>Backup &amp; security</span><span class="chip info">Planned</span></li>
+    </ol>
+  </section>
 
-      <div class="scenario">
-        <span class="label">The setup</span>
-        <p>The clinic has 10 staff across four departments: Dentists, Clinical, Reception and Admin.</p>
-        <div class="specs"><span>Domain: kasismiles.local</span><span>Server: KS-DC01 · 192.168.10.10</span><span>Network: 192.168.10.0/24</span><span>Windows Server 2025 · VirtualBox</span></div>
+  <section>
+    <header><span class="label">Section 1 · Done</span><h2>Server setup</h2><p class="muted">Goal: one central server to manage the whole clinic.</p></header>
+    <div class="evidence">
+      <figure><figcaption><b>1.</b> Built the server: 4GB RAM, 2 CPUs, 60GB disk.</figcaption><a href="images/s1-vm-settings.png" target="_blank" rel="noopener"><img src="images/s1-vm-settings.png" alt="VirtualBox summary for KS-DC01" loading="lazy" onerror="this.closest('figure').hidden=true"></a></figure>
+      <figure><figcaption><b>2.</b> Gave it a fixed IP address: 192.168.10.10.</figcaption><a href="images/s1-ipv4.png" target="_blank" rel="noopener"><img src="images/s1-ipv4.png" alt="IPv4 settings with static IP" loading="lazy" onerror="this.closest('figure').hidden=true"></a></figure>
+    </div>
+    <div class="problem">
+      <span class="chip wip">Problem I hit</span>
+      <h3>The server couldn't reach the network</h3>
+      <div class="evidence">
+        <figure><figcaption><b>Problem:</b> pings failed.</figcaption><a href="images/s1-ping-fail.png" target="_blank" rel="noopener"><img src="images/s1-ping-fail.png" alt="Ping failing with destination host unreachable" loading="lazy" onerror="this.closest('figure').hidden=true"></a></figure>
+        <figure><figcaption><b>Cause:</b> the network range was wrong (10.0.2.0/24).</figcaption><a href="images/s1-network-cause.png" target="_blank" rel="noopener"><img src="images/s1-network-cause.png" alt="Virtual network set to 10.0.2.0/24" loading="lazy" onerror="this.closest('figure').hidden=true"></a></figure>
+        <figure><figcaption><b>Fixed:</b> corrected it. 0% packet loss.</figcaption><a href="images/s1-ping-success.png" target="_blank" rel="noopener"><img src="images/s1-ping-success.png" alt="Successful pings" loading="lazy" onerror="this.closest('figure').hidden=true"></a></figure>
       </div>
-
-      <div class="part">
-        <div class="part-head"><h3>Progress</h3><span class="chip info">2 of 9 sections done</span></div>
-        <ol class="roadmap">
-          <li class="done"><span>Server setup</span><span class="chip ok">Done</span></li>
-          <li class="done"><span>Active Directory: users &amp; groups</span><span class="chip ok">Done</span></li>
-          <li><span>Join the reception PC to the domain</span><span class="chip wip">Next</span></li>
-          <li><span>Helpdesk tickets: resets &amp; unlocks</span><span class="chip info">Planned</span></li>
-          <li><span>Permissions &amp; Group Policy</span><span class="chip info">Planned</span></li>
-          <li><span>PowerShell onboarding script</span><span class="chip info">Planned</span></li>
-          <li><span>Cloud identity: Entra ID &amp; MFA</span><span class="chip info">Planned</span></li>
-          <li><span>Clinic network: VLANs &amp; DHCP</span><span class="chip info">Planned</span></li>
-          <li><span>Backup &amp; security monitoring</span><span class="chip info">Planned</span></li>
-        </ol>
-      </div>
-
-      <div class="part">
-        <div class="part-head"><h3>1 · Server setup</h3><span class="chip ok">Done</span></div>
-        <div class="facts">
-          <div class="fact"><span class="label">Goal</span><p>Give the clinic one central server to manage logins, files and security, instead of setting up every PC separately.</p></div>
-          <div class="fact"><span class="label">What I did</span><ul>
-            <li>Created a private virtual network (192.168.10.0/24) with DHCP switched off, so I control every address</li>
-            <li>Built a VM (4GB RAM, 2 CPUs, 60GB) and installed Windows Server 2025</li>
-            <li>Renamed it KS-DC01 to a naming standard and set the South African time zone</li>
-            <li>Set a static IP and tested with <code>ipconfig</code> and <code>ping</code></li>
-          </ul></div>
-        </div>
-        <pre class="cmd"><span class="p">C:\&gt;</span> ping 8.8.8.8
-Reply from 8.8.8.8: bytes=32 time=12ms TTL=128
-Reply from 8.8.8.8: bytes=32 time=13ms TTL=128
-Packets: Sent = 4, Received = 4, Lost = 0 (0% loss)</pre>
-        <div class="shots">
-          <figure><a href="images/s1-vm-settings.png" target="_blank" rel="noopener"><img src="images/s1-vm-settings.png" alt="VirtualBox summary for KS-DC01: 4096 MB RAM, 2 CPUs, 60 GB disk, KS-ClinicNet network" loading="lazy" onerror="this.closest('figure').hidden=true"></a><figcaption>The server's virtual hardware and network</figcaption></figure>
-          <figure><a href="images/s1-ipv4.png" target="_blank" rel="noopener"><img src="images/s1-ipv4.png" alt="IPv4 settings: 192.168.10.10, gateway 192.168.10.1, DNS 127.0.0.1" loading="lazy" onerror="this.closest('figure').hidden=true"></a><figcaption>Static IP and DNS settings</figcaption></figure>
-          <figure><a href="images/s1-ping-fail.png" target="_blank" rel="noopener"><img src="images/s1-ping-fail.png" alt="Ping failing with destination host unreachable" loading="lazy" onerror="this.closest('figure').hidden=true"></a><figcaption>Problem: "Destination host unreachable"</figcaption></figure>
-          <figure><a href="images/s1-network-cause.png" target="_blank" rel="noopener"><img src="images/s1-network-cause.png" alt="Virtual network prefix still set to 10.0.2.0/24" loading="lazy" onerror="this.closest('figure').hidden=true"></a><figcaption>The cause: wrong network range</figcaption></figure>
-          <figure><a href="images/s1-ping-success.png" target="_blank" rel="noopener"><img src="images/s1-ping-success.png" alt="Successful pings to the gateway and to 8.8.8.8" loading="lazy" onerror="this.closest('figure').hidden=true"></a><figcaption>Fixed: 0% packet loss</figcaption></figure>
-        </div>
-      </div>
-
-      <div class="part">
-        <div class="part-head"><h3>2 · Active Directory</h3><span class="chip ok">Done</span></div>
-        <div class="facts">
-          <div class="fact"><span class="label">Goal</span><p>Give every staff member their own login, organised by department, so access is controlled from one place.</p></div>
-          <div class="fact"><span class="label">What I did</span><ul>
-            <li>Installed AD DS and promoted KS-DC01 to a domain controller for kasismiles.local</li>
-            <li>Pointed the server's DNS to itself so it acts as the clinic's "phonebook"</li>
-            <li>Built OUs for Dentists, Clinical, Reception and Admin, plus Groups and Computers</li>
-            <li>Created 4 security groups and 10 staff accounts (firstname.lastname), each forced to change their password at first login</li>
-            <li>Added job titles, departments and managers so the directory matches the real org chart</li>
-          </ul></div>
-          <div class="fact"><span class="label">Result</span><p>1 domain · 8 OUs · 4 security groups · 10 users</p></div>
-        </div>
-        <pre class="cmd"><span class="p">C:\&gt;</span> net group "GRP-Reception" /domain
-Members
--------------------------------------------------------
-ayanda.khumalo      thandi.mokoena      tumi.radebe
-The command completed successfully.</pre>
-        <div class="shots">
-          <figure><a href="images/s2-install-success.png" target="_blank" rel="noopener"><img src="images/s2-install-success.png" alt="Active Directory Domain Services installation succeeded on KS-DC01" loading="lazy" onerror="this.closest('figure').hidden=true"></a><figcaption>AD DS role installed</figcaption></figure>
-          <figure><a href="images/s2-prereqs.png" target="_blank" rel="noopener"><img src="images/s2-prereqs.png" alt="All prerequisite checks passed before promotion" loading="lazy" onerror="this.closest('figure').hidden=true"></a><figcaption>Prerequisite checks passed</figcaption></figure>
-          <figure><a href="images/s2-domain-login.png" target="_blank" rel="noopener"><img src="images/s2-domain-login.png" alt="Login screen showing KASISMILES\Administrator" loading="lazy" onerror="this.closest('figure').hidden=true"></a><figcaption>Proof the domain exists</figcaption></figure>
-          <figure><a href="images/s2-ou-tree.png" target="_blank" rel="noopener"><img src="images/s2-ou-tree.png" alt="OU structure in Active Directory Users and Computers" loading="lazy" onerror="this.closest('figure').hidden=true"></a><figcaption>The clinic's OU structure</figcaption></figure>
-          <figure><a href="images/s2-reception-ou.png" target="_blank" rel="noopener"><img src="images/s2-reception-ou.png" alt="Reception OU with three users" loading="lazy" onerror="this.closest('figure').hidden=true"></a><figcaption>Reception staff in their OU</figcaption></figure>
-          <figure><a href="images/s2-group-members.png" target="_blank" rel="noopener"><img src="images/s2-group-members.png" alt="GRP-Reception members tab with three users" loading="lazy" onerror="this.closest('figure').hidden=true"></a><figcaption>Reception group members</figcaption></figure>
-          <figure><a href="images/s2-net-user.png" target="_blank" rel="noopener"><img src="images/s2-net-user.png" alt="net user and net group command results" loading="lazy" onerror="this.closest('figure').hidden=true"></a><figcaption>All 10 staff, verified by command</figcaption></figure>
-        </div>
-      </div>
-
-      <div class="part">
-        <h3>Problems I hit, and how I fixed them</h3>
-        <div class="fixes">
-          <div class="fix"><h4>Pings failed even though the IP settings were right</h4>
-            <p><b>Clue:</b> "Destination host unreachable", with replies coming from the server itself. <b>Cause:</b> the virtual network was still on its default range (10.0.2.0/24). <b>Fix:</b> shut the server down, corrected the range, re-tested: 0% loss. <b>Lesson:</b> check the device, then the network, and read the actual ping reply.</p></div>
-          <div class="fix"><h4>Locked out after promoting the domain controller</h4>
-            <p><b>Clue:</b> the domain existed but the password was rejected. <b>Checks:</b> ruled out Caps Lock and keyboard issues with the on-screen keyboard. <b>Fix:</b> no recovery path, so I rebuilt the server. <b>Lesson:</b> test credentials straight after setting them, and snapshot before big changes.</p></div>
-          <div class="fix"><h4>The server showed a 169.254 address</h4>
-            <p><b>Cause:</b> an APIPA address means the PC couldn't get an IP, so no static IP had been set. <b>Fix:</b> set it before installing AD, because a domain controller needs a fixed address.</p></div>
-          <div class="fix"><h4>A duplicate OU wouldn't delete</h4>
-            <p><b>Cause:</b> OUs are protected from accidental deletion by default. <b>Fix:</b> turned on Advanced Features, removed the protection, deleted only the duplicate.</p></div>
-        </div>
-      </div>
-
-      <div class="part">
-        <h3>Habits I now follow</h3>
-        <ul class="habits">
-          <li>Take a VM snapshot before every major change</li>
-          <li>Test a new password by signing out and back in, then record it</li>
-          <li>Check the computer name and IP before installing any server role</li>
-        </ul>
-      </div>
-
-
+      <p class="muted"><b>Lesson:</b> check the device, then the network.</p>
     </div>
   </section>
 
+  <section>
+    <header><span class="label">Section 2 · Done</span><h2>Active Directory</h2><p class="muted">Goal: every staff member gets their own login, sorted by department.</p></header>
+    <div class="evidence">
+      <figure><figcaption><b>1.</b> Installed Active Directory.</figcaption><a href="images/s2-install-success.png" target="_blank" rel="noopener"><img src="images/s2-install-success.png" alt="AD DS installation succeeded" loading="lazy" onerror="this.closest('figure').hidden=true"></a></figure>
+      <figure><figcaption><b>2.</b> All checks passed before going live.</figcaption><a href="images/s2-prereqs.png" target="_blank" rel="noopener"><img src="images/s2-prereqs.png" alt="Prerequisite checks passed" loading="lazy" onerror="this.closest('figure').hidden=true"></a></figure>
+      <figure><figcaption><b>3.</b> The clinic's domain is live.</figcaption><a href="images/s2-domain-login.png" target="_blank" rel="noopener"><img src="images/s2-domain-login.png" alt="Login screen showing KASISMILES\Administrator" loading="lazy" onerror="this.closest('figure').hidden=true"></a></figure>
+      <figure><figcaption><b>4.</b> Folders for each department.</figcaption><a href="images/s2-ou-tree.png" target="_blank" rel="noopener"><img src="images/s2-ou-tree.png" alt="OU structure" loading="lazy" onerror="this.closest('figure').hidden=true"></a></figure>
+      <figure><figcaption><b>5.</b> Staff placed in their department.</figcaption><a href="images/s2-reception-ou.png" target="_blank" rel="noopener"><img src="images/s2-reception-ou.png" alt="Reception OU with three users" loading="lazy" onerror="this.closest('figure').hidden=true"></a></figure>
+      <figure><figcaption><b>6.</b> Added staff to their group.</figcaption><a href="images/s2-group-members.png" target="_blank" rel="noopener"><img src="images/s2-group-members.png" alt="GRP-Reception members" loading="lazy" onerror="this.closest('figure').hidden=true"></a></figure>
+      <figure class="wide"><figcaption><b>7.</b> Checked all 10 users with a command.</figcaption><a href="images/s2-net-user.png" target="_blank" rel="noopener"><img src="images/s2-net-user.png" alt="net user and net group results" loading="lazy" onerror="this.closest('figure').hidden=true"></a></figure>
+    </div>
+    <div class="problem">
+      <span class="chip wip">Problems I hit</span>
+      <ul class="fixlist">
+        <li><b>Locked out after setup.</b> The password was rejected, so I rebuilt the server.</li>
+        <li><b>169.254 address.</b> This meant no static IP, so I set it before going on.</li>
+        <li><b>Wrong server name.</b> I renamed it before installing Active Directory.</li>
+        <li><b>Extra folder wouldn't delete.</b> It was protected, so I turned that off first.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <header><span class="label">What I learned</span><h2>Habits I now follow</h2></header>
+    <ul class="fixlist">
+      <li>Save a snapshot before every big change.</li>
+      <li>Test a new password straight away.</li>
+      <li>Check the name and IP before installing anything.</li>
+    </ul>
+  </section>
+
   <footer>
-    <a class="backlink" href="index.html">&larr; Back to my portfolio</a>
-    <p class="label">Click any screenshot to see it full size</p>
+    <a href="index.html">← Back to my portfolio</a>
+    <p class="muted small">Click any screenshot to see it full size.</p>
   </footer>
 </div>
+
 </body>
 </html>
